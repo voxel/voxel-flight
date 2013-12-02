@@ -15,6 +15,7 @@ module.exports = function(gameInstance) {
 function Fly(physical, noKeyEvents) {
   this.flySpeed = 0.8
   this.physical = physical
+  this.enabled = true
   if (!noKeyEvents) this.bindKeyEvents()
 }
 
@@ -29,6 +30,8 @@ Fly.prototype.bindKeyEvents = function(el) {
     .on('keyup', onKeyUp)
   
   function onKeyDown(ev) {
+    if (!self.enabled) return
+
     var key = vkey[ev.keyCode] || ev.char
     var binding = game.keybindings[key]
     if (binding !== "jump") return
@@ -51,6 +54,8 @@ Fly.prototype.bindKeyEvents = function(el) {
   }
   
   function onKeyUp(ev) {
+    if (!self.enabled) return
+
     var key = vkey[ev.keyCode] || ev.char
     if (key === '<space>' && counter === 1) {
       spaceUpAfterFirstDown = true
