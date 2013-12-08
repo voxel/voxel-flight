@@ -13,7 +13,7 @@ function Fly(game, opts) {
   if (!this.game || !this.physical) throw "voxel-fly requires game parameter and option 'physical'"
   this.noKeyEvents = opts.noKeyEvents || false
   this.flySpeed = opts.flySpeed || 0.8
-  this.enabled = opts.enabled || true
+  this.enabled = opts.enabled !== undefined ? opts.enabled : true
   if (!this.noKeyEvents) this.bindKeyEvents()
 }
 
