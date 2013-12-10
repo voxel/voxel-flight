@@ -11,25 +11,21 @@ function Fly(game, opts) {
   this.game = game
   this.physical = opts.physical
   if (!this.game || !this.physical) throw "voxel-fly requires game parameter and option 'physical'"
-  this.noKeyEvents = opts.noKeyEvents || false
   this.flySpeed = opts.flySpeed || 0.8
-  this.enabled = opts.enabled !== undefined ? opts.enabled : true
-  if (!this.noKeyEvents) this.bindKeyEvents()
+
+  this.enable()
 }
 
-Fly.prototype.bindKeyEvents = function(el) {
-  if (!el) el = document.body
+Fly.prototype.enable = function() {
   var self = this
   var counter = 0
   var spaceUpAfterFirstDown = false
   var first = Date.now()
-  ever(el)
+  ever(document.body)
     .on('keydown', onKeyDown)
     .on('keyup', onKeyUp)
   
   function onKeyDown(ev) {
-    if (!self.enabled) return
-
     var key = vkey[ev.keyCode] || ev.char
     var binding = self.game.keybindings[key]
     if (binding !== "jump") return
@@ -52,13 +48,23 @@ Fly.prototype.bindKeyEvents = function(el) {
   }
   
   function onKeyUp(ev) {
-    if (!self.enabled) return
-
     var key = vkey[ev.keyCode] || ev.char
     if (key === '<space>' && counter === 1) {
       spaceUpAfterFirstDown = true
     }
   }
+
+  this.onKeyDown = onKeyDown;
+  this.onKeyUp = onKeyUp;
+}
+
+Fly.prototype.disable = function() {
+  if (this.flying)
+    this.stopFlying()
+
+  ever(document.body)
+    .removeListener('keydown', this.onKeyDown)
+    .removeListener('keyup', this.onKeyUp)
 }
 
 Fly.prototype.startFlying = function() {
