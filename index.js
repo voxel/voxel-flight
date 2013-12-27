@@ -7,7 +7,7 @@ module.exports = function(game, opts) {
 }
 
 module.exports.pluginInfo = {
-  'loadAfter': ['player']
+  loadAfter: ['voxel-player'] // for game.controls.target()
 }
 
 function Fly(game, opts) {
