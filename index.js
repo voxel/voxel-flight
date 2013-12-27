@@ -4,13 +4,16 @@ var events = require('events')
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
+}
 
+module.exports.pluginInfo = {
+  'loadAfter': ['player']
 }
 
 function Fly(game, opts) {
   this.game = game
   this.physical = opts.physical
-  if (!this.game || !this.physical) throw "voxel-fly requires game parameter and option 'physical'"
+  if (!this.game) throw 'voxel-fly requires game parameter';
   this.flySpeed = opts.flySpeed || 0.8
 
   this.enable()
@@ -21,6 +24,9 @@ Fly.prototype.enable = function() {
   var counter = 0
   var spaceUpAfterFirstDown = false
   var first = Date.now()
+
+  if (!this.physical) this.physical = this.game.controls.target()
+
   ever(document.body)
     .on('keydown', onKeyDown)
     .on('keyup', onKeyUp)
