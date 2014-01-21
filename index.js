@@ -14,6 +14,7 @@ function Fly(game, opts) {
   this.game = game
   this.physical = opts.physical
   if (!this.game) throw 'voxel-fly requires game parameter';
+  if (!this.game.isClient) return;
   this.flySpeed = opts.flySpeed || 0.8
 
   this.enable()
