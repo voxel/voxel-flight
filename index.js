@@ -73,9 +73,9 @@ Fly.prototype.startFlying = function() {
     physical.friction.x = self.flySpeed
     physical.friction.z = self.flySpeed
     var press = self.game.controls.state
-    if (press['crouch']) return physical.velocity.y = -0.01
-    if (press['jump']) return physical.velocity.y = 0.01
     physical.velocity.y = 0
+    if (press['jump']) physical.velocity.y += 0.01
+    if (press['crouch']) physical.velocity.y -= 0.01
   }
   this.game.on('tick', physical.onGameTick)
 }
