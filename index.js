@@ -13,8 +13,9 @@ module.exports.pluginInfo = {
 function Fly(game, opts) {
   this.game = game
   this.physical = opts.physical
-  if (!this.game) throw 'voxel-fly requires game parameter';
+  if (!this.game) throw new Error('voxel-fly requires game parameter');
   if (!this.game.isClient) return;
+  if (!this.game.buttons.down) throw new Error('voxel-fly requires game.buttons as kb-bindings ');
   this.flySpeed = opts.flySpeed || 0.8
 
   this.enable()
@@ -28,14 +29,7 @@ Fly.prototype.enable = function() {
 
   if (!this.physical) this.physical = this.game.controls.target()
 
-  ever(document.body)
-    .on('keydown', onKeyDown)
-    .on('keyup', onKeyUp)
-  
-  function onKeyDown(ev) {
-    var key = vkey[ev.keyCode] || ev.char
-    var binding = self.game.keybindings[key]
-    if (binding !== "jump") return
+  this.game.buttons.down.on('jump', this.onJumpDown = function() {
     if (counter === 1) {
       if (Date.now() - first > 300) {
         spaceUpAfterFirstDown = false
@@ -52,26 +46,21 @@ Fly.prototype.enable = function() {
       first = Date.now()
       counter += 1
     }
-  }
-  
-  function onKeyUp(ev) {
-    var key = vkey[ev.keyCode] || ev.char
-    if (key === '<space>' && counter === 1) {
+  });
+ 
+  this.game.buttons.up.on('jump', this.onJumpUp = function() {
+    if (counter === 1) {
       spaceUpAfterFirstDown = true
     }
-  }
-
-  this.onKeyDown = onKeyDown;
-  this.onKeyUp = onKeyUp;
+  });
 }
 
 Fly.prototype.disable = function() {
   if (this.flying)
     this.stopFlying()
 
-  ever(document.body)
-    .removeListener('keydown', this.onKeyDown)
-    .removeListener('keyup', this.onKeyUp)
+  this.game.buttons.down.removeListener('jump', this.onJumpDown);
+  this.game.buttons.up.removeListener('jump', this.onJumpUp);
 }
 
 Fly.prototype.startFlying = function() {
