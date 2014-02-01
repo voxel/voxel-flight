@@ -1,6 +1,3 @@
-var ever = require('ever')
-var vkey = require('vkey')
-var events = require('events')
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)

@@ -20,7 +20,5 @@
     "start": "beefy test.js"
   },
   "dependencies": {
-    "vkey": "0.0.3",
-    "ever": "0.0.3"
   }
 }
