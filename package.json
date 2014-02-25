@@ -8,9 +8,6 @@
   },
   "author": "Max Ogden <max@maxogden.com>",
   "license": "BSD",
-  "peerDependencies": {
-    "voxel-engine": ">=0.15.0"
-  },
   "scripts": {
     "start": "beefy test.js"
   },
