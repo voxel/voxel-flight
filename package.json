@@ -1,6 +1,6 @@
 {
   "name": "voxel-flight",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "flight mode (voxel.js plugin)",
   "main": "flight.js",
   "repository": {
@@ -18,6 +18,5 @@
     "fly"
   ],
   "license": "BSD",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
