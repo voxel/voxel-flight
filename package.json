@@ -1,12 +1,15 @@
 {
-  "name": "voxel-fly",
+  "name": "voxel-flight",
   "version": "0.1.2",
-  "description": "fly around in voxel.js games",
+  "description": "flight mode (voxel.js plugin)",
   "repository": {
     "type": "git",
-    "url": "git://github.com/maxogden/voxel-fly.git"
+    "url": "git://github.com/deathcap/voxel-flight.git"
   },
   "author": "Max Ogden <max@maxogden.com>",
+  "contributors": [
+    "deathcap <deathcap@gmx.co.uk>"
+  ],
   "license": "BSD",
   "scripts": {
     "start": "beefy test.js"

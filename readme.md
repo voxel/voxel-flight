@@ -1,42 +1,39 @@
-# voxel-fly
+# voxel-flight
 
-minecraft(TM) style double-tap jump button to go into fly mode, then use jump/crouch buttons to adjust altitude, and land if you hit the ground
+Double-tap jump to toggle flight mode, then use jump/crouch to adjust altitude, and land if you hit the ground
+
+Based on [voxel-fly](https://github.com/maxogden/voxel-fly) by @maxogden,
+but for [voxel-engine#ndarray](https://github.com/maxogden/voxel-engine/pull/103),
+no longer controls or depends on [voxel-player](https://github.com/substack/voxel-player),
+and loads as a plugin.
 
 ### install
 ```
-npm install voxel-fly
+npm install voxel-flight
 ```
 
-### example
+### usage
 
-```javascript
-var fly = require('voxel-fly')
-var makeFly = fly(game)
-makeFly(physicalObject)
-// physicalObject is most likely going to be your [voxel-player](https://github.com/substack/voxel-player)
-// e.g.:
-makeFly(game.controls.target())
-```
+Load with [voxel-plugins](https://github.com/deathcap/voxel-plugins).
+Requires [voxel-keys](https://github.com/deathcap/voxel-keys).
 
 ## API
 
-#### fly = require('fly')
+#### var fly = game.plugins.get('voxel-flight')
 
-require the module
+Get a reference to the plugin
 
-#### var makeFly = fly(gameInstance)
+#### fly.startFlying()
 
-Give it your game instance and it will return a function that you can use to make any physical object fly
+Start flight, as if the user double-tapped jump to enter flight mode
 
-#### var fly = makeFly(physicalObject, bindKeyEventsAutomatically)
+#### fly.stopFlying()
 
-`physicalObject` is most likely going to be your [voxel-player](https://github.com/substack/voxel-player)
+Stop flight
 
-`bindKeyEventsAutomatically` is true by default, set it to false to bypass the double-tap keyboard bindings
+#### fly.toggleFlying()
 
-#### fly.bindKeyEvents(el)
-
-If you chose not to bind key events at first you can bind them later to a specific element with this method
+Toggle flight
 
 ## License
 

@@ -10,10 +10,10 @@ module.exports.pluginInfo = {
 function Fly(game, opts) {
   this.game = game
   this.physical = opts.physical
-  if (!this.game) throw new Error('voxel-fly requires game parameter');
+  if (!this.game) throw new Error('voxel-flight requires game parameter');
   if (!this.game.isClient) return;
   this.keys = game.plugins.get('voxel-keys');
-  if (!this.keys) throw new Error('voxel-fly requires voxel-keys plugin');
+  if (!this.keys) throw new Error('voxel-flight requires voxel-keys plugin');
   this.flySpeed = opts.flySpeed || 0.8
 
   this.enable()
