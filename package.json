@@ -2,6 +2,7 @@
   "name": "voxel-flight",
   "version": "0.1.2",
   "description": "flight mode (voxel.js plugin)",
+  "main": "flight.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/deathcap/voxel-flight.git"
