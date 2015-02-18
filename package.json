@@ -11,6 +11,12 @@
   "contributors": [
     "deathcap <deathcap@gmx.co.uk>"
   ],
+  "keywords": [
+    "voxel",
+    "plugin",
+    "flight",
+    "fly"
+  ],
   "license": "BSD",
   "dependencies": {
   }
