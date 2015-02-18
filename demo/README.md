@@ -1,2 +1,0 @@
-# voxel-fly demo
-

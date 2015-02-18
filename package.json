@@ -11,9 +11,6 @@
     "deathcap <deathcap@gmx.co.uk>"
   ],
   "license": "BSD",
-  "scripts": {
-    "start": "beefy test.js"
-  },
   "dependencies": {
   }
 }
