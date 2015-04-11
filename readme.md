@@ -3,7 +3,7 @@
 Double-tap jump to toggle flight mode, then use jump/crouch to adjust altitude, and land if you hit the ground
 
 Based on [voxel-fly](https://github.com/maxogden/voxel-fly) by @maxogden,
-but for [voxel-engine#ndarray](https://github.com/maxogden/voxel-engine/pull/103),
+but for [voxel-engine-stackgl](https://github.com/deathcap/voxel-engine-stackgl),
 no longer controls or depends on [voxel-player](https://github.com/substack/voxel-player),
 and loads as a plugin.
 
